@@ -7,7 +7,7 @@ import Yo from './Yo.js';
 function App() {
   return (
     <div className="App">
-      <CatFacts />
+      <CatFacts count="3" />
     </div>
   );
 }

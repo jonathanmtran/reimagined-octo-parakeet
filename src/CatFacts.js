@@ -6,17 +6,23 @@ class CatFacts extends React.Component {
         super(props);
 
         this.state = {
-            fact: undefined
+            facts: undefined
         };
 
         this.getFacts = this.getFacts.bind(this);
     }
 
     getFacts() {
-        fetch('https://cat-fact.herokuapp.com/facts/random')
+        let url = 'https://cat-fact.herokuapp.com/facts/random';
+
+        if (typeof this.props.count !== 'undefined') {
+            url = url + '?amount=' + this.props.count;
+        }
+
+        fetch(url)
             .then(response => response.json())
             .then(data => this.setState({
-                fact: data
+                facts: data
             }));
     }
 
@@ -25,15 +31,17 @@ class CatFacts extends React.Component {
     }
 
     render() {
-        let factText;
+        let facts;
 
-        if (typeof this.state.fact !== 'undefined') {
-            factText = this.state.fact.text;
+        if (typeof this.state.facts !== 'undefined') {
+            facts = this.state.facts.map(fact => (
+                <p>{fact.text}</p>
+            ));
         }
 
         return (
             <div>
-                <p>{factText}</p>
+                { facts }
                 <button onClick={this.getFacts}>Next Fact</button>
             </div>
         );
