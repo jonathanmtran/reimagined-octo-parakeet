@@ -1,5 +1,10 @@
 import React from 'react';
 
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 class CatFacts extends React.Component {
 
     constructor(props) {
@@ -35,15 +40,18 @@ class CatFacts extends React.Component {
 
         if (typeof this.state.facts !== 'undefined') {
             facts = this.state.facts.map(fact => (
-                <p key={fact._id}>{fact.text}</p>
+                <Col key={fact._id}>{fact.text}</Col>
             ));
         }
 
         return (
-            <div>
+            <Container>
+                <h1>Cat Facts</h1>
+                <Row>
                 { facts }
-                <button onClick={this.getFacts}>Next Fact</button>
-            </div>
+                </Row>
+                <Button onClick={this.getFacts}>Next Fact</Button>
+            </Container>
         );
     }
 }
