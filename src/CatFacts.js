@@ -35,7 +35,7 @@ class CatFacts extends React.Component {
 
         if (typeof this.state.facts !== 'undefined') {
             facts = this.state.facts.map(fact => (
-                <p>{fact.text}</p>
+                <p key={fact._id}>{fact.text}</p>
             ));
         }
 
