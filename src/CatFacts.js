@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -45,13 +44,13 @@ class CatFacts extends React.Component {
         }
 
         return (
-            <Container>
-                <h1>Cat Facts</h1>
+            <div>
+                <h2>Cat Facts</h2>
                 <Row>
                 { facts }
                 </Row>
                 <Button onClick={this.getFacts}>Next Fact</Button>
-            </Container>
+            </div>
         );
     }
 }

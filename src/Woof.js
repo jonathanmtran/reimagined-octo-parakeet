@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 
 class Woof extends React.Component {
@@ -46,12 +45,12 @@ class Woof extends React.Component {
         }
 
         return (
-            <Container>
-                <h1>random.dog/woof.json</h1>
+            <div>
+                <h2>random.dog/woof.json</h2>
                 {dogImg}<br />
                 <br />
                 <Button onClick={() => this.woof()}>woof</Button>
-            </Container>
+            </div>
         );
     }
 }
