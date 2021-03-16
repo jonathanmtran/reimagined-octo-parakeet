@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 
 import CatFacts from './CatFacts.js';
+import DemoForm from './DemoForm.js';
 import Posts from './Posts.js';
 import Welcome from './Welcome.js';
 import Woof from './Woof.js';
@@ -18,6 +19,7 @@ class App extends React.Component {
 
     this.state = {
       showCatFacts: false,
+      showDemoForm: false,
       showWoof: false,
     };
 
@@ -29,12 +31,16 @@ class App extends React.Component {
 
     let defaultState = {
       showCatFacts: false,
+      showDemoForm: false,
       showWoof: false,
     };
     let newState = {};
 
     if (value === 'CatFacts') {
       newState = { showCatFacts: true };
+    }
+    else if (value === 'DemoForm') {
+      newState = { showDemoForm: true };
     }
     else if (value === 'Woof') {
       newState = { showWoof: true };
@@ -45,6 +51,7 @@ class App extends React.Component {
 
   render() {
     let catFactsComponent = this.state.showCatFacts ? <CatFacts count="3" /> : undefined;
+    let demoFormComponent = this.state.showDemoForm ? <DemoForm /> : undefined;
     let woofComponent = this.state.showWoof ? <Woof /> : undefined;
 
     return (
@@ -55,8 +62,9 @@ class App extends React.Component {
             <Form.Group>
               <Form.Label>Component</Form.Label>
               <Form.Control as="select" onChange={this.handleChange}>
-              <option>None</option>
+                <option>None</option>
                 <option value="CatFacts">CatFacts</option>
+                <option value="DemoForm">DemoForm</option>
                 <option value="Woof">Woof</option>
               </Form.Control>
             </Form.Group>
@@ -64,6 +72,7 @@ class App extends React.Component {
         </Container>
         <Container>
         { catFactsComponent }
+        { demoFormComponent }
         { woofComponent }
         </Container>
       </div>
