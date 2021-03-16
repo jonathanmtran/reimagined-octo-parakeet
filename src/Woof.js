@@ -1,11 +1,16 @@
 import React from 'react';
 
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 
 class Woof extends React.Component {
 
     componentDidMount() {
+        this.woof();
+    }
+
+    woof() {
         fetch('https://random.dog/woof.json')
             .then(response => response.json())
             .then(data => this.setState({
@@ -43,7 +48,9 @@ class Woof extends React.Component {
         return (
             <Container>
                 <h1>random.dog/woof.json</h1>
-                {dogImg}
+                {dogImg}<br />
+                <br />
+                <Button onClick={() => this.woof()}>woof</Button>
             </Container>
         );
     }
