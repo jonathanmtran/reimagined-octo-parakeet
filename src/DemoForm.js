@@ -14,6 +14,16 @@ class DemoForm extends React.Component {
         this.handleOnChange = this.handleOnChange.bind(this);
     }
 
+    componentDidMount() {
+        fetch('http://localhost:9093/todo', {})
+        .then(response => {
+            return response.json();
+        })
+        .then(response => {
+            this.setState({ items: response });
+        });
+    }
+
     handleOnSubmit(event) {
         event.preventDefault();
 
@@ -22,18 +32,27 @@ class DemoForm extends React.Component {
         }
 
         let newItem = {
-            id: Date.now(),
             text: this.state.text,
         }
 
-        let currentItems = this.state.items;
+        fetch('http://localhost:9093/todo', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(newItem),
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(object => {
+            let currentItems = this.state.items;
 
-        this.setState(
-            {
-                items: currentItems.concat(newItem),
+            this.setState({
+                items: currentItems.concat(object),
                 text: '',
-            }
-        );
+            });
+        });
     }
 
     handleOnChange(event) {
@@ -47,7 +66,7 @@ class DemoForm extends React.Component {
                 <h2>DemoForm Component</h2>
                 <ul>
                     {this.state.items.map(item => (
-                        <li key={item.id}>{item.text}</li>
+                        <li key={item._id}>{item.text}<br /><small>({item._id})</small></li>
                     ))}
                 </ul>
                 <form onSubmit={this.handleOnSubmit}>
